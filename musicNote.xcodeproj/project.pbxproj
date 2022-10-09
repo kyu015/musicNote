@@ -12,6 +12,7 @@
 		571D419F28D5A9A800950A20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 571D419E28D5A9A800950A20 /* Assets.xcassets */; };
 		571D41A228D5A9A800950A20 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 571D41A128D5A9A800950A20 /* Preview Assets.xcassets */; };
 		571D41AD28D8500C00950A20 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571D41AC28D8500C00950A20 /* QuestionView.swift */; };
+		57D84FBA28F28DFE00B8E250 /* QuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D84FB928F28DFE00B8E250 /* QuestionList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		571D419E28D5A9A800950A20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		571D41A128D5A9A800950A20 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		571D41AC28D8500C00950A20 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		57D84FB928F28DFE00B8E250 /* QuestionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				571D419A28D5A9A700950A20 /* musicNoteApp.swift */,
 				571D419C28D5A9A700950A20 /* ContentView.swift */,
+				57D84FB928F28DFE00B8E250 /* QuestionList.swift */,
 				571D41AC28D8500C00950A20 /* QuestionView.swift */,
 				571D419E28D5A9A800950A20 /* Assets.xcassets */,
 				571D41A028D5A9A800950A20 /* Preview Content */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				571D419D28D5A9A700950A20 /* ContentView.swift in Sources */,
+				57D84FBA28F28DFE00B8E250 /* QuestionList.swift in Sources */,
 				571D41AD28D8500C00950A20 /* QuestionView.swift in Sources */,
 				571D419B28D5A9A700950A20 /* musicNoteApp.swift in Sources */,
 			);

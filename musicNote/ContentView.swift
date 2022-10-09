@@ -21,35 +21,37 @@ struct ContentView: View {
                 VStack(spacing: 0){
                     
                     LazyVGrid(columns: [.init(), .init()]) {
-                        NavigationLink(destination: QuestionView(text: "Page 1")) {
+                        NavigationLink(destination: QuestionView(text: "treble_1")) {
                             Image("ト音記号ボタン")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 100, height: 80)
                         }
-                        NavigationLink(destination: QuestionView(text: "Page 2")) {
+                        NavigationLink(destination: QuestionView(text: "treble_1_reverse")) {
+                            Image("ト音記号ボタン")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 100, height: 80)
+                        }
+                        NavigationLink(destination: QuestionView(text: "bass_1")) {
                             Image("ヘ音記号ボタン")
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 100, height: 80)
                             
                         }
-                        NavigationLink(destination: QuestionView(text: "Page 3")) {
-                            Image("白ボタン素材")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 80)
-                        }
-                        NavigationLink(destination: QuestionView(text: "Page 4")) {
-                            Image("白ボタン素材")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 80)
-    //                        GroupBox("ラベル1"){
-    //                            // Textを1つ配置する場合
-    //                            Text("テキスト2-1")
-    //                        }
-                        }
+//                        NavigationLink(destination: QuestionView(text: "Page 3")) {
+//                            Image("白ボタン素材")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 100, height: 80)
+//                        }
+//                        NavigationLink(destination: QuestionView(text: "Page 4")) {
+//                            Image("白ボタン素材")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 100, height: 80)
+//                        }
                     }
                     
                     Spacer()
