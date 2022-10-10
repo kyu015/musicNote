@@ -14,19 +14,22 @@ struct QuestionView: View {
     let answers = ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"]
     
     @State var correct = true
+    @State var showAnswerResult = false
     
     @State var question = ""
     @State var answer = ""
     
+    @State var buttonValid = true
+    
     init(text: String){
         self.text = text
         switch text{
-        case "treble_1":
+        case "treble":
             self.title = "ド〜シ"
             self.questionList = QuestionList().questionSetTreble
-        case "treble_1_reverse":
-            self.title = "ド〜シ　反転"
-            self.questionList = QuestionList().questionSetTreble2
+        case "bass":
+            self.title = "ド〜シ"
+            self.questionList = QuestionList().questionSetBass
         default:
             self.title = "DEMO"
             self.questionList = QuestionList().questionDummy
@@ -34,51 +37,94 @@ struct QuestionView: View {
         }
     }
     
+    func showSymbol(index: Int){
+        self.buttonValid = false
+        self.correct = self.answers[index] == self.answer
+        self.showAnswerResult = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.showAnswerResult = false
+            self.question = nextQuestion(question: questionList)
+            self.answer = questionList[question]!
+            self.buttonValid = true
+        }
+    }
     
+    func nextQuestion(question: [String:String]) -> String{
+            if let random = question.randomElement(){
+                return random.key
+            }
+        fatalError("Error:問題が存在しません")
+    }
     
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationView{
             
-            VStack{
-                Text("answer is " + (correct ? "correct" : "incorrect"))
-                Text(question)
-                Spacer()
+            ZStack{
                 
                 VStack{
-                    HStack{
-                        ForEach(0 ..< 3) {index in
-                            Button(action: {
-                                correct = answers[index] == answer
-                                question = nextQuestion(question: questionList)
-                                answer = questionList[question]!
-                            }, label: {
-                                Image(answers[index])
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 70, height: 70)
-                            })
+                    if showAnswerResult {
+                        if correct {
+                            Image("マル")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 200, height: 200)
+                        }else {
+                            Image("バツ")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 200, height: 200)
                         }
                     }
-                    HStack{
-                        ForEach(3 ..< 7) {index in
-                            Button(action: {
-                                correct = answers[index] == answer
-                                question = nextQuestion(question: questionList)
-                                answer = questionList[question]!
-                            }, label: {
-                                Image(answers[index])
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 70, height: 70)
-                            })
-                        }
-                    }
+                    Spacer()
                 }
-                Spacer()
+                
+                VStack{
+                    Image(question)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 200, height: 200)
+                    
+                    Spacer()
+                    
+                    VStack{
+                        HStack{
+                            ForEach(0 ..< 3) {index in
+                                Button(action: {
+                                    if buttonValid {
+                                        showSymbol(index: index)
+                                    }
+                                }, label: {
+                                    Image(answers[index])
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 70, height: 70)
+                                })
+                            }
+                        }
+                        HStack{
+                            ForEach(3 ..< 7) {index in
+                                Button(action: {
+                                    if buttonValid {
+                                        showSymbol(index: index)
+                                    }
+                                }, label: {
+                                    Image(answers[index])
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 70, height: 70)
+                                })
+                            }
+                        }
+                    }
+                    Spacer()
+                }
+                
             }
+            
+
         }.navigationBarBackButtonHidden(true)
-            .navigationTitle(title)
+//            .navigationTitle(title)
             .onAppear{
                 question = nextQuestion(question: questionList)
                 answer = questionList[question]!
@@ -92,9 +138,4 @@ struct QuestionView_Previews: PreviewProvider {
     }
 }
 
-func nextQuestion(question: [String:String]) -> String{
-        if let random = question.randomElement(){
-            return random.key
-        }
-    fatalError("Error:問題が存在しません")
-}
+

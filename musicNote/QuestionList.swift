@@ -9,6 +9,15 @@ import Foundation
 
 struct QuestionList{
     let questionSetTreble = [
+        "TC": "ド",
+        "TD": "レ",
+        "TE": "ミ",
+        "TF": "ファ",
+        "TG": "ソ",
+        "TA": "ラ",
+        "TB": "シ"
+    ]
+    let questionSetBass = [
         "C": "ド",
         "D": "レ",
         "E": "ミ",
