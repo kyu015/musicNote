@@ -11,7 +11,7 @@ struct QuestionView: View {
     var text: String
     var questionList = QuestionList().questionSetTreble
     var title: String
-    let answers = ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"]
+    let answers: [String]
     
     @State var correct = true
     @State var showAnswerResult = false
@@ -21,18 +21,26 @@ struct QuestionView: View {
     
     @State var buttonValid = true
     
+    @State var timer: Timer!
+    @State var count: Int = 10
+    
+    @State var score: Int = 0
+    
     init(text: String){
         self.text = text
         switch text{
         case "treble":
             self.title = "ド〜シ"
             self.questionList = QuestionList().questionSetTreble
+            self.answers = QuestionList().answerSetTreble
         case "bass":
             self.title = "ド〜シ"
             self.questionList = QuestionList().questionSetBass
+            self.answers = QuestionList().answerSetBass
         default:
             self.title = "DEMO"
             self.questionList = QuestionList().questionDummy
+            self.answers = QuestionList().answerSetTreble
 //            fatalError("Error:問題が存在しません")
         }
     }
@@ -40,6 +48,9 @@ struct QuestionView: View {
     func showSymbol(index: Int){
         self.buttonValid = false
         self.correct = self.answers[index] == self.answer
+        if self.correct {
+            self.score += 1
+        }
         self.showAnswerResult = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showAnswerResult = false
@@ -47,6 +58,26 @@ struct QuestionView: View {
             self.answer = questionList[question]!
             self.buttonValid = true
         }
+    }
+    
+    func startCountUp(){
+        // Timerの実態があるときは停止させる
+        self.timer?.invalidate()
+        // count初期化
+        self.count = 10
+        // Timer取得
+        self.timer = Timer.scheduledTimer(withTimeInterval:1, repeats: true){ _ in
+            self.count -= 1
+            if self.count <= 0 {
+                stop()
+                dismiss()
+            }
+        }
+    }
+    
+    func stop(){
+        timer?.invalidate()
+        timer = nil
     }
     
     func nextQuestion(question: [String:String]) -> String{
@@ -79,7 +110,18 @@ struct QuestionView: View {
                     Spacer()
                 }
                 
+                
+                
                 VStack{
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text("残り時間　" + String(count))
+                            Text("スコア　　" + String(score))
+                        }
+                        Spacer()
+                    }
+                    
+                    
                     Image(question)
                         .resizable()
                         .scaledToFill()
@@ -128,6 +170,7 @@ struct QuestionView: View {
             .onAppear{
                 question = nextQuestion(question: questionList)
                 answer = questionList[question]!
+                startCountUp()
             }
     }
 }

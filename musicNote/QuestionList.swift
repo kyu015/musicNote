@@ -17,6 +17,7 @@ struct QuestionList{
         "TA": "ラ",
         "TB": "シ"
     ]
+    let answerSetTreble = ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"]
     let questionSetBass = [
         "C": "ド",
         "D": "レ",
@@ -26,6 +27,7 @@ struct QuestionList{
         "A": "ラ",
         "B": "シ"
     ]
+    let answerSetBass = ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"]
     let questionSetTreble2 = [
         "ド": "C",
         "レ": "D",
