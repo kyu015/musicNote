@@ -12,6 +12,7 @@ struct QuestionView: View {
     var questionList = QuestionList().questionSetTreble
     var title: String
     let answers: [String]
+    var anss = ["ド", "レ", "ミ"]
     
     @State var correct = true
     @State var showAnswerResult = false
@@ -133,16 +134,29 @@ struct QuestionView: View {
                         HStack{
                             ForEach(0 ..< 3) {index in
                                 Button(action: {
-                                    if buttonValid {
-                                        showSymbol(index: index)
-                                    }
-                                }, label: {
-                                    Image(answers[index])
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 70, height: 70)
-                                })
+                                }) {
+                                    Text(anss[index])
+                                        .font(.system(size: 24))
+                                        .foregroundColor(.black)
+                                        .padding()
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .foregroundColor(Color(red: 0.9, green: 0.9, blue: 0.9))
+                                            )
+                                }
                             }
+//                            ForEach(0 ..< 3) {index in
+//                                Button(action: {
+//                                    if buttonValid {
+//                                        showSymbol(index: index)
+//                                    }
+//                                }, label: {
+//                                    Image(answers[index])
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: 70, height: 70)
+//                                })
+//                            }
                         }
                         HStack{
                             ForEach(3 ..< 7) {index in
