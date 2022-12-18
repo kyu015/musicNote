@@ -12,7 +12,6 @@ struct QuestionView: View {
     var questionList = QuestionList().questionSetTreble
     var title: String
     let answers: [String]
-    var anss = ["ド", "レ", "ミ"]
     
     @State var correct = true
     @State var showAnswerResult = false
@@ -23,7 +22,7 @@ struct QuestionView: View {
     @State var buttonValid = true
     
     @State var timer: Timer!
-    @State var count: Int = 10
+    @State var count: Int = 0
     
     @State var score: Int = 0
     
@@ -65,7 +64,7 @@ struct QuestionView: View {
         // Timerの実態があるときは停止させる
         self.timer?.invalidate()
         // count初期化
-        self.count = 10
+        self.count = 30
         // Timer取得
         self.timer = Timer.scheduledTimer(withTimeInterval:1, repeats: true){ _ in
             self.count -= 1
@@ -86,6 +85,23 @@ struct QuestionView: View {
                 return random.key
             }
         fatalError("Error:問題が存在しません")
+    }
+    
+    func answerButton(indexNumber: Int) -> some View {
+        Button(action: {
+            if buttonValid {
+                showSymbol(index: indexNumber)
+            }
+        }) {
+            Text(answers[indexNumber])
+                .font(.system(size: 30))
+                .foregroundColor(.black)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundColor(Color(red: 0.9, green: 0.9, blue: 0.9))
+                    )
+        }
     }
     
     @Environment(\.dismiss) var dismiss
@@ -133,43 +149,12 @@ struct QuestionView: View {
                     VStack{
                         HStack{
                             ForEach(0 ..< 3) {index in
-                                Button(action: {
-                                }) {
-                                    Text(anss[index])
-                                        .font(.system(size: 24))
-                                        .foregroundColor(.black)
-                                        .padding()
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .foregroundColor(Color(red: 0.9, green: 0.9, blue: 0.9))
-                                            )
-                                }
+                                answerButton(indexNumber: index)
                             }
-//                            ForEach(0 ..< 3) {index in
-//                                Button(action: {
-//                                    if buttonValid {
-//                                        showSymbol(index: index)
-//                                    }
-//                                }, label: {
-//                                    Image(answers[index])
-//                                        .resizable()
-//                                        .scaledToFill()
-//                                        .frame(width: 70, height: 70)
-//                                })
-//                            }
                         }
                         HStack{
                             ForEach(3 ..< 7) {index in
-                                Button(action: {
-                                    if buttonValid {
-                                        showSymbol(index: index)
-                                    }
-                                }, label: {
-                                    Image(answers[index])
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 70, height: 70)
-                                })
+                                answerButton(indexNumber: index)
                             }
                         }
                     }
@@ -188,6 +173,8 @@ struct QuestionView: View {
             }
     }
 }
+
+
 
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
