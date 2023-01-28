@@ -8,6 +8,7 @@
 import Foundation
 
 struct QuestionList{
+//    高いドや低いシなども入れる？
     let questionSetTreble = [
         "TC": "ド",
         "TD": "レ",
@@ -19,13 +20,13 @@ struct QuestionList{
     ]
     let answerSetTreble = ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"]
     let questionSetBass = [
-        "C": "ド",
-        "D": "レ",
-        "E": "ミ",
-        "F": "ファ",
-        "G": "ソ",
-        "A": "ラ",
-        "B": "シ"
+        "BC": "ド",
+        "BD": "レ",
+        "BE": "ミ",
+        "BF": "ファ",
+        "BG": "ソ",
+        "BA": "ラ",
+        "BB": "シ"
     ]
     let answerSetBass = ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"]
     let questionSetTreble2 = [
