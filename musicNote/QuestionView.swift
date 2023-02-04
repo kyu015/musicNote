@@ -141,8 +141,7 @@ struct QuestionView: View {
                     
                     Image(question)
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: 200, height: 200)
+                        .scaledToFit()
                     
                     Spacer()
                     

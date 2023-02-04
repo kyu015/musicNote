@@ -41,9 +41,9 @@ import SwiftUI
 
 
 
-
-struct test_Previews: PreviewProvider {
-    static var previews: some View {
-        test()
-    }
-}
+//
+//struct test_Previews: PreviewProvider {
+//    static var previews: some View {
+//        test()
+//    }
+//}
