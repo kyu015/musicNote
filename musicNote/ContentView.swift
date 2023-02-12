@@ -10,6 +10,8 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @State var isActive = false
+    
     var body: some View {
         NavigationView{
             ZStack{
@@ -19,19 +21,35 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0){
+                    Spacer()
                     
                     LazyVGrid(columns: [.init(), .init()]) {
-                        NavigationLink(destination: QuestionView(text: "treble")) {
-                            Image("ト音記号ボタン")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 80)
+//                        NavigationLink(destination: QuestionView(text: "treble")) {
+//                            Image("ト音記号ボタン")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 100, height: 80)
+//                        }
+//                        NavigationLink(destination: QuestionView(text: "bass")) {
+//                            Image("ヘ音記号ボタン")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 100, height: 80)
+//
+//                        }
+                        Button(action: {
+                            self.isActive = true
+                        }) {
+                            Text("テスト")
+                                .font(.system(size: 30))
+                                .foregroundColor(.black)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.85))
+                                    )
                         }
-                        NavigationLink(destination: QuestionView(text: "bass")) {
-                            Image("ヘ音記号ボタン")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 80)
+                        NavigationLink(destination: QuestionView(text: "treble"), isActive: $isActive) {
                             
                         }
                     }

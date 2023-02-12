@@ -9,7 +9,8 @@ import SwiftUI
 
 struct QuestionView: View {
     var text: String
-    var questionList = QuestionList().questionSetTreble
+//    var questionList = QuestionList().questionSetTreble
+    var questionList: [String:String] = [:]
     var title: String
     let answers: [String]
     
@@ -31,17 +32,20 @@ struct QuestionView: View {
         switch text{
         case "treble":
             self.title = "ド〜シ"
-            self.questionList = QuestionList().questionSetTreble
+            self.questionList = QuestionList().questionSetTrebleC4
             self.answers = QuestionList().answerSetTreble
-        case "bass":
+        case "trebleC5":
             self.title = "ド〜シ"
-            self.questionList = QuestionList().questionSetBass
+            self.questionList = QuestionList().questionSetTrebleC5
+            self.answers = QuestionList().answerSetBass
+        case "trebleAll":
+            self.title = "ド〜シ"
+            self.questionList = QuestionList().questionSetTrebleAll
             self.answers = QuestionList().answerSetBass
         default:
-            self.title = "DEMO"
-            self.questionList = QuestionList().questionDummy
+            self.title = "ド〜シ"
+            self.questionList = QuestionList().questionSetTrebleC4
             self.answers = QuestionList().answerSetTreble
-//            fatalError("Error:問題が存在しません")
         }
     }
     

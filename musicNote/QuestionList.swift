@@ -9,7 +9,7 @@ import Foundation
 
 struct QuestionList{
 //    高いドや低いシなども入れる？
-    let questionSetTreble = [
+    let questionSetTrebleAll = [
         "TC": "ド",
         "TD": "レ",
         "TE": "ミ",
@@ -19,6 +19,32 @@ struct QuestionList{
         "TB": "シ",
         "TLA": "ラ",
         "TLB": "シ",
+        "THC": "ド",
+        "THD": "レ",
+        "THE": "ミ",
+        "THF": "ファ",
+        "THG": "ソ",
+        "THA": "ラ",
+        "THB": "シ",
+        "THHC": "ド"
+    ]
+    let questionSetTrebleC4 = [
+        "TC": "ド",
+        "TD": "レ",
+        "TE": "ミ",
+        "TF": "ファ",
+        "TG": "ソ",
+        "TA": "ラ",
+        "TB": "シ",
+    ]
+    let questionSetTrebleC5 = [
+        "TC": "ド",
+        "TD": "レ",
+        "TE": "ミ",
+        "TF": "ファ",
+        "TG": "ソ",
+        "TA": "ラ",
+        "TB": "シ",
         "THC": "ド",
         "THD": "レ",
         "THE": "ミ",
